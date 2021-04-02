@@ -1,0 +1,35 @@
+.crypto-list {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.crypto-list ul.the-list {
+  margin: 0;
+  padding: 0;
+}
+
+.crypto-list ul.the-list li {
+  list-style: none;
+  border: solid 1px #ccc;
+  padding: 7px 25px;
+  margin-top: -1px;
+  line-height: 1.5;
+}
+
+.crypto-list ul.the-list li span {
+  font-weight: 500;
+  padding: 0 3px;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.blue {
+  color: blue;
+}
