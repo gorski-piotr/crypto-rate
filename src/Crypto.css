@@ -1,0 +1,11 @@
+.crypto {
+  margin: 20px;
+}
+
+.crypto input {
+  font-size: 18px;
+  line-height: 2;
+}
+.crypto input:focus {
+  outline-color: lightskyblue;
+}

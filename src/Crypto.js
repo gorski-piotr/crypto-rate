@@ -9,6 +9,7 @@ export default class Crypto extends Component {
 
     this.state = {
       cryptoList: [],
+      filteredCryptoList: [],
     };
   }
 
@@ -42,7 +43,10 @@ export default class Crypto extends Component {
             symbol: CryptoRate.symbol,
             lastRate: CryptoRate.last,
           };
+          //   console.log(ticker, CryptoRate);
+          //   console.log(newCryptoObj);
           newCryptoList.push(newCryptoObj);
+          //   console.log(newCryptoList);
 
           let lastCryptoObj = state.cryptoList.find((cryptoObj) => {
             return cryptoObj.currency === ticker;
@@ -71,13 +75,40 @@ export default class Crypto extends Component {
           cryptoList: newCryptoList,
         };
       });
+      this.filterCryptoList();
     });
+  };
+
+  filterCryptoList = () => {
+    this._inputFilter.value = this._inputFilter.value
+      .trim()
+      .toLocaleUpperCase();
+
+    this.setState((state) => {
+      let newFilteredCryptoList = state.cryptoList.filter((cryptoObj) => {
+        return cryptoObj.currency.includes(this._inputFilter.value);
+      });
+
+      return {
+        filteredCryptoList: newFilteredCryptoList,
+      };
+    });
+
+    console.log(this._inputFilter.value);
   };
 
   render() {
     return (
       <div className="crypto">
-        <CryptoList cryptoList={this.state.cryptoList} />
+        <input
+          ref={(element) => {
+            this._inputFilter = element;
+          }}
+          onChange={this.filterCryptoList}
+          type="text"
+          placeholder="Filter"
+        />
+        <CryptoList cryptoList={this.state.filteredCryptoList} />
       </div>
     );
   }
